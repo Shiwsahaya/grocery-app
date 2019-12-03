@@ -40,6 +40,7 @@ var performOperation = (clickObj) => {
                 evalStringArray.push('+');
             }
             break;
+
         case '-':
             if (evalStringArray[evalStringArray.length - 1] != '-') {
                 pendingVal = displayVal;
@@ -48,10 +49,9 @@ var performOperation = (clickObj) => {
                 evalStringArray.push(pendingVal);
                 evalStringArray.push('-');
             }
-
             break;
-        case '×':
 
+        case '×':
             if (evalStringArray[evalStringArray.length - 1] != '*') {
                 pendingVal = displayVal;
                 displayVal = '0';
@@ -59,8 +59,8 @@ var performOperation = (clickObj) => {
                 evalStringArray.push(pendingVal);
                 evalStringArray.push('*');
             }
-
             break;
+
         case '÷':
 
             if (evalStringArray[evalStringArray.length - 1] != '/') {
@@ -70,7 +70,6 @@ var performOperation = (clickObj) => {
                 evalStringArray.push(pendingVal);
                 evalStringArray.push('/');
             }
-
             break;
 
         case '=':
@@ -79,7 +78,6 @@ var performOperation = (clickObj) => {
             displayVal = evautation + '';
             diplayValElement.innerText = displayVal;
             evalStringArray = [];
-
         default:
             break;
     }
