@@ -19,7 +19,7 @@ var calcOperatorButton = document.getElementsByClassName('operator');
 
 var displayVal = 0;
 var pendingVal;
-var evalStringArray = [];
+var resultString = [];
 
 var updateDisplyVal = (clickObj) => {
     var btnText = clickObj.target.innerText;
@@ -32,52 +32,52 @@ var performOperation = (clickObj) => {
     var operator = clickObj.target.innerText;
     switch (operator) {
         case '+':
-            if (evalStringArray[evalStringArray.length - 1] != '+') {
+            if (resultString[resultString.length - 1] != '+') {
                 pendingVal = displayVal;
                 displayVal = '0';
                 diplayValElement.innerText = displayVal;
-                evalStringArray.push(pendingVal);
-                evalStringArray.push('+');
+                resultString.push(pendingVal);
+                resultString.push('+');
             }
             break;
 
         case '-':
-            if (evalStringArray[evalStringArray.length - 1] != '-') {
+            if (resultString[resultString.length - 1] != '-') {
                 pendingVal = displayVal;
                 displayVal = '0';
                 diplayValElement.innerText = displayVal;
-                evalStringArray.push(pendingVal);
-                evalStringArray.push('-');
+                resultString.push(pendingVal);
+                resultString.push('-');
             }
             break;
 
         case '×':
-            if (evalStringArray[evalStringArray.length - 1] != '*') {
+            if (resultString[resultString.length - 1] != '*') {
                 pendingVal = displayVal;
                 displayVal = '0';
                 diplayValElement.innerText = displayVal;
-                evalStringArray.push(pendingVal);
-                evalStringArray.push('*');
+                resultString.push(pendingVal);
+                resultString.push('*');
             }
             break;
 
         case '÷':
 
-            if (evalStringArray[evalStringArray.length - 1] != '/') {
+            if (resultString[resultString.length - 1] != '/') {
                 pendingVal = displayVal;
                 displayVal = '0';
                 diplayValElement.innerText = displayVal;
-                evalStringArray.push(pendingVal);
-                evalStringArray.push('/');
+                resultString.push(pendingVal);
+                resultString.push('/');
             }
             break;
 
         case '=':
-            evalStringArray.push(displayVal);
-            var evautation = eval(evalStringArray.join(''));
+            resultString.push(displayVal);
+            var evautation = eval(resultString.join(''));
             displayVal = evautation + '';
             diplayValElement.innerText = displayVal;
-            evalStringArray = [];
+            resultString = [];
         default:
             break;
     }
@@ -92,7 +92,7 @@ for (let i = 0; i < calcOperatorButton.length; i++) {
 clearButton.onclick = () => {
     displayVal = '0';
     pendingVal = undefined;
-    evalStringArray = [];
+    resultString = [];
     diplayValElement.innerHTML = displayVal;
 }
 backspaceButton.onclick = () => {
