@@ -32,32 +32,45 @@ var performOperation = (clickObj) => {
     var operator = clickObj.target.innerText;
     switch (operator) {
         case '+':
-            pendingVal = displayVal;
-            displayVal = '0';
-            diplayValElement.innerText = displayVal;
-            evalStringArray.push(pendingVal);
-            evalStringArray.push('+');
+            if (evalStringArray[evalStringArray.length - 1] != '+') {
+                pendingVal = displayVal;
+                displayVal = '0';
+                diplayValElement.innerText = displayVal;
+                evalStringArray.push(pendingVal);
+                evalStringArray.push('+');
+            }
             break;
         case '-':
-            pendingVal = displayVal;
-            displayVal = '0';
-            diplayValElement.innerText = displayVal;
-            evalStringArray.push(pendingVal);
-            evalStringArray.push('-');
+            if (evalStringArray[evalStringArray.length - 1] != '-') {
+                pendingVal = displayVal;
+                displayVal = '0';
+                diplayValElement.innerText = displayVal;
+                evalStringArray.push(pendingVal);
+                evalStringArray.push('-');
+            }
+
             break;
         case '×':
-            pendingVal = displayVal;
-            displayVal = '0';
-            diplayValElement.innerText = displayVal;
-            evalStringArray.push(pendingVal);
-            evalStringArray.push('*');
+
+            if (evalStringArray[evalStringArray.length - 1] != '*') {
+                pendingVal = displayVal;
+                displayVal = '0';
+                diplayValElement.innerText = displayVal;
+                evalStringArray.push(pendingVal);
+                evalStringArray.push('*');
+            }
+
             break;
         case '÷':
-            pendingVal = displayVal;
-            displayVal = '0';
-            diplayValElement.innerText = displayVal;
-            evalStringArray.push(pendingVal);
-            evalStringArray.push('/');
+
+            if (evalStringArray[evalStringArray.length - 1] != '/') {
+                pendingVal = displayVal;
+                displayVal = '0';
+                diplayValElement.innerText = displayVal;
+                evalStringArray.push(pendingVal);
+                evalStringArray.push('/');
+            }
+
             break;
 
         case '=':
