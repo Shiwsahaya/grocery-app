@@ -5,40 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="style.css" rel="stylesheet">
-    <title>Weather App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/b5f871566b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+
+    <title>Document</title>
 </head>
 
 <body>
+    <div class="header">
+        <h1>Grocery Cart</h1>
+    </div>
+
     <div class="container">
-        <div class="header">
+        <div class="input-data">
+            Name:<input type="text" id="nameId" required><br/><br/> Unit:
+            <input type="number" id="unitId" required><br/><br/> Price:
+            <input type="number" id="priceId" required><br/><br/>
+            <a href="#" onclick="addItem()" class="btn">Add Item</a>
+            <a href="#" onclick="editButton()" class="btn">Edit Confirm</a>
         </div>
-        <div class="content">
-            <div class="general-information">
-                <div class="status" data-status>Enter A Location</div>
-                <div class="location" data-location>To Find The Weather</div>
+
+        <div class="item-details">
+            <div class="table-responsive-md">
+                <table id="item-table" class="table table-hover" align="center">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Name</th>
+                            <th>Unit</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                            <th>Edit</th>
+                            <Th>Delete</Th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
-            <div class="detail-section">
-                <div class="detail">
-                    <div class="title">humidity</div>
-                    <div class="value" data-humidity>TBD</div>
-                </div>
-                <div class="detail bordered">
-                    <div class="title">Temperature</div>
-                    <div class="value" data-temperature>TBD</div>
-                </div>
-                <div class="detail">
-                    <div class="title">pressure</div>
-                    <div class="value" data-pressure>TBD</div>
-                </div>
-            </div>
-            <div class="city-search-container">
-                <input type="text" id="city-search" data-city-search placeholder="Enter Location">
-                <button id="btn" onclick="fetchData()">Search</button>
-            </div>
+        </div>
+        <div class="total-val-output">
+            <p>Grand Total: <span id="grand-total">0</span></p>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <div id="editDetails"></div>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
