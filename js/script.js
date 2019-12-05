@@ -13,20 +13,23 @@ function addItem() {
     let unit = document.getElementById("unitId");
     let price = document.getElementById("priceId");
     let total = unit.value * price.value;
-    if (name.value != "" && unit.value != "" && price.value != "") {
+    total = total.toFixed(2);
+    if (name.value != "" && unit.value != "" && price.value != "" && unit.value > 0 && price.value >= 0) {
         list.push(name.value);
         list.push(unit.value);
         list.push(price.value);
         list.push(total);
-        grandTotal = grandTotal + total;
+        grandTotal = parseFloat(grandTotal) + parseFloat(total);
+        grandTotal = grandTotal.toFixed(2);
         updateTable(list);
         grandTotalValue(grandTotal);
+        name.value = "";
+        unit.value = "";
+        price.value = "";
     } else {
-        alert("first filled all field")
+        alert("First Filled All Field Data in Valid Form")
     }
-    name.value = "";
-    unit.value = "";
-    price.value = "";
+
 }
 
 function updateTable(list) {
@@ -62,19 +65,29 @@ function editButton() {
         let unit = document.getElementById("unitId").value;
         let price = document.getElementById("priceId").value;
 
-        grandTotal = grandTotal - document.getElementById("item-table").rows[editIndex].cells[3].innerHTML;
-        console.log(grandTotal);
-        document.getElementById("item-table").rows[editIndex].cells[0].innerHTML = name;
-        document.getElementById("item-table").rows[editIndex].cells[1].innerHTML = unit;
-        document.getElementById("item-table").rows[editIndex].cells[2].innerHTML = price;
-        document.getElementById("item-table").rows[editIndex].cells[3].innerHTML = unit * price;
-        grandTotal = grandTotal + parseInt(document.getElementById("item-table").rows[editIndex].cells[3].innerHTML);
+        if (name != "" && unit != "" && price != "" && unit > 0 && price >= 0) {
+            grandTotal = grandTotal - document.getElementById("item-table").rows[editIndex].cells[3].innerHTML;
+            console.log(grandTotal);
+            document.getElementById("item-table").rows[editIndex].cells[0].innerHTML = name;
+            document.getElementById("item-table").rows[editIndex].cells[1].innerHTML = unit;
+            document.getElementById("item-table").rows[editIndex].cells[2].innerHTML = price;
+            let total = unit * price;
+            total = total.toFixed(2);
+            document.getElementById("item-table").rows[editIndex].cells[3].innerHTML = total;
+            grandTotal = grandTotal + parseFloat(document.getElementById("item-table").rows[editIndex].cells[3].innerHTML);
 
-        document.getElementById("nameId").value = "";
-        document.getElementById("unitId").value = "";
-        document.getElementById("priceId").value = "";
-        grandTotalValue(grandTotal);
-        editFlag = false;
+            document.getElementById("nameId").value = "";
+            document.getElementById("unitId").value = "";
+            document.getElementById("priceId").value = "";
+
+            grandTotal = grandTotal.toFixed(2);
+            grandTotalValue(grandTotal);
+            editFlag = false;
+        } else {
+            alert("First Filled All Field Data in Valid Form")
+        }
+
+
     }
 }
 
@@ -83,6 +96,7 @@ function deleteItem(row) {
     let minusValue = document.getElementById("item-table").rows[index].cells[3].innerHTML;
     grandTotal = grandTotal - minusValue;
     document.getElementById("item-table").deleteRow(index);
+    grandTotal = grandTotal.toFixed(2);
     grandTotalValue(grandTotal);
     insertRowIndex--;
 }
